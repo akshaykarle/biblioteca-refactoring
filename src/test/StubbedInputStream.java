@@ -13,7 +13,7 @@ class StubbedInputStream extends InputStream {
 
     @Override
     public int read(byte[] bytes) throws IOException {
-        return super.read(bytes);    //To change body of overridden methods use File | Settings | File Templates.
+        return super.read(bytes);
     }
 
     @Override
@@ -33,7 +33,7 @@ class StubbedInputStream extends InputStream {
 
     @Override
     public int read() throws IOException {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;
     }
 
     public static InputStreamBuilder stubInputStream() {

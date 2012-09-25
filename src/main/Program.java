@@ -10,30 +10,37 @@ public class Program {
     public static void main(String[] args) {
         while (true) {
             displayMenu();
-
-            InputStreamReader inputStream = new InputStreamReader(System.in);
-            BufferedReader reader = new BufferedReader(inputStream);
+            BufferedReader reader = getReader();
             int i1 = 0;
             i1 = getUserInputNumber(reader, i1);
-
-            if (i1 == 1) {
-                displayBooks();
-            } else if (i1 == 2) {
-                checkOutBook(reader);
-            } else if (i1 == 3) {
-                displayLibraryNumber();
-            } else if (i1 == 4) {
-                displayMovies();
-            } else if (i1 == 5) {
-                performLogin(reader);
-            } else if (i1 == 9) {
-                System.out.println("Quitting...");
-                break;
-            } else {
-                System.out.println("\n");
-                System.out.println("Enter a valid integer!!");
-            }
+            if (selectOption(reader, i1)) break;
         }
+    }
+
+    private static BufferedReader getReader() {
+        InputStreamReader inputStream = new InputStreamReader(System.in);
+        return new BufferedReader(inputStream);
+    }
+
+    private static boolean selectOption(BufferedReader reader, int i1) {
+        if (i1 == 1) {
+            displayBooks();
+        } else if (i1 == 2) {
+            checkOutBook(reader);
+        } else if (i1 == 3) {
+            displayLibraryNumber();
+        } else if (i1 == 4) {
+            displayMovies();
+        } else if (i1 == 5) {
+            performLogin(reader);
+        } else if (i1 == 9) {
+            System.out.println("Quitting...");
+            return true;
+        } else {
+            System.out.println("\n");
+            System.out.println("Enter a valid integer!!");
+        }
+        return false;
     }
 
     private static void performLogin(BufferedReader reader) {
