@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Queue;
 
 class StubbedInputStream extends InputStream {
-    private Queue<String> input;
+    private final Queue<String> input;
 
     public StubbedInputStream(Queue<String> input) {
         this.input = input;

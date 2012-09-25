@@ -50,11 +50,11 @@ public class Program {
                         savedLibraryNumber = libraryNumber;
                     }
                 } catch (Exception e) {
-
+                    System.out.println("Enter a valid password!!");
                 }
             }
         } catch (Exception e) {
-
+            System.out.println("Enter a valid username!!");
         }
     }
 
