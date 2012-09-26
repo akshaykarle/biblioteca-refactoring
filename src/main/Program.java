@@ -11,9 +11,9 @@ public class Program {
         while (true) {
             displayMenu();
             BufferedReader reader = getReader();
-            int i1 = 0;
-            i1 = getUserInputNumber(reader, i1);
-            if (selectOption(reader, i1)) break;
+            int option = 0;
+            option = getUserInputNumber(reader, option);
+            if (selectOption(reader, option)) break;
         }
     }
 
@@ -22,14 +22,14 @@ public class Program {
         return new BufferedReader(inputStream);
     }
 
-    private static int getUserInputNumber(BufferedReader reader, int i1) {
+    private static int getUserInputNumber(BufferedReader reader, int number) {
         try {
             String value = reader.readLine();
-            i1 = Integer.parseInt(value);
+            number = Integer.parseInt(value);
         } catch (Exception e) {
             System.out.println("Enter a valid integer!!");
         }
-        return i1;
+        return number;
     }
 
     private static String getUserInputString(BufferedReader reader) {
@@ -42,18 +42,18 @@ public class Program {
         return input;
     }
 
-    private static boolean selectOption(BufferedReader reader, int i1) {
-        if (i1 == 1) {
+    private static boolean selectOption(BufferedReader reader, int option) {
+        if (option == 1) {
             BookCollection.displayBooks();
-        } else if (i1 == 2) {
+        } else if (option == 2) {
             checkOutBook(reader);
-        } else if (i1 == 3) {
+        } else if (option == 3) {
             displayLibraryNumber();
-        } else if (i1 == 4) {
+        } else if (option == 4) {
             MovieCollection.displayMovies();
-        } else if (i1 == 5) {
+        } else if (option == 5) {
             performLogin(reader);
-        } else if (i1 == 9) {
+        } else if (option == 9) {
             System.out.println("Quitting...");
             return true;
         } else {
@@ -94,9 +94,9 @@ public class Program {
 
     private static void checkOutBook(BufferedReader reader) {
         System.out.println(" Please enter the number of the book you wish to checkout: ");
-        int i2 = 0;
-        i2 = getUserInputNumber(reader, i2);
-        BookCollection.reserveBook(i2);
+        int bookNumber = 0;
+        bookNumber = getUserInputNumber(reader, bookNumber);
+        BookCollection.reserveBook(bookNumber);
     }
 
     private static void displayMenu() {
