@@ -50,7 +50,7 @@ public class Program {
         } else if (i1 == 3) {
             displayLibraryNumber();
         } else if (i1 == 4) {
-            displayMovies();
+            MovieCollection.displayMovies();
         } else if (i1 == 5) {
             performLogin(reader);
         } else if (i1 == 9) {
@@ -79,19 +79,6 @@ public class Program {
             }
             else
             System.out.println("Enter a valid username!!");
-    }
-
-    private static void displayMovies() {
-        System.out.println(createMovie("Rocky", "John G. Avildsen", "10"));
-        System.out.println(createMovie("Rocky II", "John G. Avildsen", "9"));
-        System.out.println(createMovie("Rocky III", "John G. Avildsen", "8"));
-        System.out.println(createMovie("Rocky IV", "John G. Avildsen", "7"));
-        System.out.println(createMovie("Rocky V", "John G. Avildsen", "8"));
-        System.out.println(createMovie("Drainage", "Francisco Trindade", "N/A"));
-        System.out.println(createMovie("The Shawshank Redemption", "Frank Darabont", "10"));
-        System.out.println(createMovie("The Godfather", "Francis Ford Coppola", "7"));
-        System.out.println(createMovie("Inception", "Frank Darabont", "10"));
-        System.out.println(createMovie("Pulp Fiction", "Quentin Tarantino", "6"));
     }
 
     private static void displayLibraryNumber() {
@@ -132,14 +119,9 @@ public class Program {
         return loggedIn;
     }
 
-
     private static void clearLogin() {
         loggedIn = false;
         User.savedLibraryNumber = "";
-    }
-
-    private static String createMovie(String movieTitle, String movieDirector, String movieRanking) {
-        return movieTitle + " - Director: " + movieDirector + " Rating: " + movieRanking;
     }
 }
 
