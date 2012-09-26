@@ -1,11 +1,11 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Program {
     private static boolean loggedIn = false;
-    private static String savedLibraryNumber = "";
 
     public static void main(String[] args) {
         while (true) {
@@ -20,6 +20,26 @@ public class Program {
     private static BufferedReader getReader() {
         InputStreamReader inputStream = new InputStreamReader(System.in);
         return new BufferedReader(inputStream);
+    }
+
+    private static int getUserInputNumber(BufferedReader reader, int i1) {
+        try {
+            String value = reader.readLine();
+            i1 = Integer.parseInt(value);
+        } catch (Exception e) {
+            System.out.println("Enter a valid integer!!");
+        }
+        return i1;
+    }
+
+    private static String getUserInputString(BufferedReader reader) {
+        String input = new String();
+        try {
+            input = reader.readLine();
+        } catch (IOException e) {
+            System.out.println("Enter a valid String!!");
+        }
+        return input;
     }
 
     private static boolean selectOption(BufferedReader reader, int i1) {
@@ -46,23 +66,19 @@ public class Program {
     private static void performLogin(BufferedReader reader) {
         clearLogin();
         System.out.println("Enter your library number");
-        try {
-            String libraryNumber = reader.readLine();
-            if (validLibraryNumber(libraryNumber)) {
-                try {
-                    System.out.println("Enter your Password: ");
-                    String password = reader.readLine();
-                    if (validPassword(password)) {
-                        loggedIn = true;
-                        savedLibraryNumber = libraryNumber;
-                    }
-                } catch (Exception e) {
-                    System.out.println("Enter a valid password!!");
+            String libraryNumber = getUserInputString(reader);
+            if (User.validLibraryNumber(libraryNumber)) {
+                System.out.println("Enter your Password: ");
+                String password = getUserInputString(reader);
+                if (User.validPassword(password)) {
+                    loggedIn = true;
+                    User.savedLibraryNumber = libraryNumber;
                 }
+                else
+                    System.out.println("Enter a valid password!!");
             }
-        } catch (Exception e) {
+            else
             System.out.println("Enter a valid username!!");
-        }
     }
 
     private static void displayMovies() {
@@ -81,7 +97,7 @@ public class Program {
     private static void displayLibraryNumber() {
         if (loggedIn()) {
             System.out.println("\n");
-            System.out.println("Your library number is " + savedLibraryNumber);
+            System.out.println("Your library number is " + User.savedLibraryNumber);
         } else {
 
             System.out.println("\n");
@@ -94,17 +110,6 @@ public class Program {
         int i2 = 0;
         i2 = getUserInputNumber(reader, i2);
         BookCollection.reserveBook(i2);
-    }
-
-    private static int getUserInputNumber(BufferedReader reader, int i1) {
-        try {
-            String value = reader.readLine();
-            i1 = Integer.parseInt(value);
-        } catch (Exception e) {
-            // Do you know what numbers are!!!
-            System.out.println("Enter a valid integer!!");
-        }
-        return i1;
     }
 
     private static void displayMenu() {
@@ -123,14 +128,6 @@ public class Program {
         System.out.println("Your Selection: ");
     }
 
-    private static boolean validPassword(String password) {
-        return "bhaisahab".equals(password);
-    }
-
-    private static boolean validLibraryNumber(String libraryNumber) {
-        return libraryNumber.matches("\\d\\d\\d-\\d\\d\\d\\d");
-    }
-
     private static boolean loggedIn() {
         return loggedIn;
     }
@@ -138,7 +135,7 @@ public class Program {
 
     private static void clearLogin() {
         loggedIn = false;
-        savedLibraryNumber = "";
+        User.savedLibraryNumber = "";
     }
 
     private static String createMovie(String movieTitle, String movieDirector, String movieRanking) {
