@@ -37,19 +37,6 @@ public class ProgramTest {
     }
 
     @Test
-    public void show_the_books_available_for_rental() throws IOException {
-        System.setOut(new PrintStream(outputStream));
-        System.setIn(stubInputStream().toReturn(BOOK_LISTING).then(EXIT_CODE).atSomePoint());
-
-        launchApp();
-
-        assertThat(outputStream.toString(), containsString("1. Sweet Valley High vol. 4 by John Travolta "));
-        assertThat(outputStream.toString(), containsString("2. eXtreme Programming Explained by Kent Beck "));
-        assertThat(outputStream.toString(), containsString("3. How to Win Friends and Influence People by Dale Carnagie "));
-        assertThat(outputStream.toString(), containsString("4. How to Cheat at TWU Assignements by Anonymous "));
-    }
-
-    @Test
     public void check_out_a_book() {
         System.setOut(new PrintStream(outputStream));
         System.setIn(stubInputStream().toReturn(CHECK_OUT_BOOK).then("1").then(EXIT_CODE).atSomePoint());

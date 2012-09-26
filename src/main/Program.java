@@ -24,7 +24,7 @@ public class Program {
 
     private static boolean selectOption(BufferedReader reader, int i1) {
         if (i1 == 1) {
-            displayBooks();
+            BookCollection.displayBooks();
         } else if (i1 == 2) {
             checkOutBook(reader);
         } else if (i1 == 3) {
@@ -93,34 +93,7 @@ public class Program {
         System.out.println(" Please enter the number of the book you wish to checkout: ");
         int i2 = 0;
         i2 = getUserInputNumber(reader, i2);
-        switch (i2) {
-            case 1:
-                System.out.println("\n");
-                System.out.println(" Thank You! Enjoy the book.");
-                break;
-            case 2:
-                System.out.println("\n");
-                System.out.println(" Thank You! Enjoy the book.");
-                break;
-            case 3:
-                System.out.println("\n");
-                System.out.println(" Thank You! Enjoy the book.");
-                break;
-            case 4:
-                System.out.println("\n");
-                System.out.println(" Thank You! Enjoy the book.");
-                break;
-            default:
-                System.out.println("\n");
-                System.out.println("Sorry we don't have that book yet.");
-        }
-    }
-
-    private static void displayBooks() {
-        System.out.println(" 1. Sweet Valley High vol. 4 by John Travolta ");
-        System.out.println(" 2. eXtreme Programming Explained by Kent Beck ");
-        System.out.println(" 3. How to Win Friends and Influence People by Dale Carnagie ");
-        System.out.println(" 4. How to Cheat at TWU Assignements by Anonymous ");
+        BookCollection.reserveBook(i2);
     }
 
     private static int getUserInputNumber(BufferedReader reader, int i1) {
