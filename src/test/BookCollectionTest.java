@@ -23,4 +23,16 @@ public class BookCollectionTest {
         assertThat(outputStream.toString(), containsString("4. How to Cheat at TWU Assignements by Anonymous "));
     }
 
+    @Test
+    public void reserve_book() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        BookCollection.reserveBook(1);
+        assertThat(outputStream.toString(), containsString("Thank You! Enjoy the book."));
+
+        BookCollection.reserveBook(5);
+        assertThat(outputStream.toString(), containsString("Sorry we don't have that book yet."));
+    }
+
 }
